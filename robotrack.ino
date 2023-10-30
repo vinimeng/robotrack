@@ -62,6 +62,8 @@ void setup() {
   // Motores
   MotorDireito.Pinout(pino1MotorDireito, pino2MotorDireito);
   MotorEsquerdo.Pinout(pino1MotorEsquerdo, pino2MotorEsquerdo);
+  MotorDireito.Speed(90);
+  MotorEsquerdo.Speed(90);
 
   // Sensores infra-vermelho
   pinMode(pinoSensorIREsquerdo, INPUT);

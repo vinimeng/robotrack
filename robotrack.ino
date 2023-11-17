@@ -1,5 +1,5 @@
-#define pino1MotorDireito 3
-#define pino2MotorDireito 5
+#define pino1MotorDireito 5
+#define pino2MotorDireito 3
 #define pino1MotorEsquerdo 6
 #define pino2MotorEsquerdo 9
 #define pinoSensorIREsquerdo A1
@@ -62,8 +62,8 @@ void setup() {
   // Motores
   MotorDireito.Pinout(pino1MotorDireito, pino2MotorDireito);
   MotorEsquerdo.Pinout(pino1MotorEsquerdo, pino2MotorEsquerdo);
-  MotorDireito.Speed(90);
-  MotorEsquerdo.Speed(90);
+  MotorDireito.Speed(120);
+  MotorEsquerdo.Speed(120);
 
   // Sensores infra-vermelho
   pinMode(pinoSensorIREsquerdo, INPUT);
@@ -75,18 +75,18 @@ void setup() {
 
 void loop() {
   if(IREsquerdo() && IRDireito()){ // Se detectar na extremidade das faixas duas cores brancas
-    MotorEsquerdo.Stop();
-    MotorDireito.Stop();
+    MotorEsquerdo.Backward();
+    MotorDireito.Backward();
     Serial.println("Parado!");
   }
 
-  if(IREsquerdo() && !IRDireito()){ // Se detectar um lado preto e o outro branco
+  if(!IREsquerdo() && IRDireito()){ // Se detectar um lado preto e o outro branco
     MotorEsquerdo.Stop();
     MotorDireito.Forward();
     Serial.println("Virando para esquerda!");
   }
 
-  if(!IREsquerdo() && IRDireito()){ // Se detectar um lado branco e o outro preto
+  if(IREsquerdo() && !IRDireito()){ // Se detectar um lado branco e o outro preto
     MotorEsquerdo.Forward();
     MotorDireito.Stop();
     Serial.println("Virando para direita!");
